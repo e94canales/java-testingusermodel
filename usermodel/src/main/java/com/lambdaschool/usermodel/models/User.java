@@ -3,14 +3,7 @@ package com.lambdaschool.usermodel.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +58,7 @@ public class User extends Auditable
      * Part of the join relationship between user and role
      * connects users to the user role combination
      */
-    @OneToMany(mappedBy = "user",
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user",
         cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "user",
         allowSetters = true)
